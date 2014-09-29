@@ -1,5 +1,6 @@
 class GalleriesController < ApplicationController
   def index
+    @galleries = Gallery.all
     render :index
   end
 
@@ -14,6 +15,10 @@ class GalleriesController < ApplicationController
       description: params[:gallery][:description]
     )
     redirect_to "/"
-    puts params.inspect
+  end
+
+  def show
+    @gallery = Gallery.find(params[:id])
+    render :show
   end
 end
