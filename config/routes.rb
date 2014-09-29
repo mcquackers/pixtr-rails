@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   post "/galleries" => "galleries#create"
   get "/galleries/:id" => "galleries#show"
   get "/galleries/:id/edit" => "galleries#edit"
-  #patch "/galleries
+  patch "/galleries/:id" => "galleries#update"
+  delete "/galleries/:id" => "galleries#destroy"
 end
