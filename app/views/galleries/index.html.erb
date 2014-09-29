@@ -3,6 +3,11 @@
 
 <ul>
   <% @galleries.each do |gallery| %>
-    <li><a href="/galleries/<%= gallery.id %>"><%= gallery.name %></a> - <%= gallery.description %></li>
+    <li><a href="/galleries/<%= gallery.id %>">
+        <%= gallery.name %>
+      </a> 
+      -
+    <%= gallery.description %></li>
+    <a href="/galleries/<%= gallery.id %>/edit">edit</a>
   <% end%>
 </ul>

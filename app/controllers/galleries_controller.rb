@@ -21,4 +21,9 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.find(params[:id])
     render :show
   end
+
+  def edit
+    @gallery = Gallery.find(params[:id])
+    render :edit
+  end
 end
