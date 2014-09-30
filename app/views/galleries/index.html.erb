@@ -1,5 +1,5 @@
 <h1>Pixtr says HI</h1>
-<a href="/galleries/new">Make a new gallery</a>
+<%= link_to "Make a new gallery", new_gallery_path %>
 
 <ul>
   <% @galleries.each do |gallery| %>
@@ -15,4 +15,3 @@
     <%#<%= link_to "Delete", gallery, data: { confirm: "Are you sure?" }, method: "delete" %>
   <% end %>
 </ul>
-
