@@ -3,15 +3,16 @@
 
 <ul>
   <% @galleries.each do |gallery| %>
-    <li><%= link_to "#{gallery.name}", "/galleries/#{gallery.id}" %>
+    <li><%= link_to gallery.name, gallery %>
       -
     <%= gallery.description %>
-    <%= link_to "edit", "/galleries/#{gallery.id}/edit" %>
+    <%= link_to "Edit", edit_gallery_path(gallery) %>
+
     </li>
-    <form action="/galleries/<%= gallery.id %>" method="POST">
-      <input type="hidden" name="_method" value="DELETE">
-      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
-      <input type="submit" value="Delete" />
-    </form>
-  <% end%>
+    <%= form_for gallery, method: :delete do |form| %>
+      <%= form.submit "Delete" %>
+    <% end %>
+    <%#<%= link_to "Delete", gallery, data: { confirm: "Are you sure?" }, method: "delete" %>
+  <% end %>
 </ul>
+
