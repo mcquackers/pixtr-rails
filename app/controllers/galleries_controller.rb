@@ -9,8 +9,8 @@ class GalleriesController < ApplicationController
 
   def create
     #protected from mass assignment until attributes are whitelisted
-    Gallery.create(gallery_params)
-    redirect_to "/"
+    gallery = Gallery.create(gallery_params)
+    redirect_to gallery_path(gallery)
   end
 
   def show
@@ -24,7 +24,7 @@ class GalleriesController < ApplicationController
   def update
     gallery = Gallery.find(params[:id])
     gallery.update(gallery_params)
-    redirect_to "/"
+    redirect_to gallery_path(gallery)
   end
 
   def destroy
