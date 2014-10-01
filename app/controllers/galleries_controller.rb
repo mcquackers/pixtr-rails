@@ -9,8 +9,12 @@ class GalleriesController < ApplicationController
 
   def create
     #protected from mass assignment until attributes are whitelisted
-    gallery = Gallery.create(gallery_params)
-    redirect_to gallery_path(gallery)
+    @gallery = Gallery.new(gallery_params)
+    if @gallery.save
+      redirect_to gallery_path(gallery)
+    else
+      render :new
+    end
   end
 
   def show
@@ -22,9 +26,12 @@ class GalleriesController < ApplicationController
   end
 
   def update
-    gallery = Gallery.find(params[:id])
-    gallery.update(gallery_params)
-    redirect_to gallery_path(gallery)
+    @gallery = Gallery.find(params[:id])
+    if @gallery.update(gallery_params)
+      redirect_to gallery_path(@gallery)
+    else
+      render :edit
+    end
   end
 
   def destroy
