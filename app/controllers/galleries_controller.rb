@@ -11,7 +11,7 @@ class GalleriesController < ApplicationController
     #protected from mass assignment until attributes are whitelisted
     @gallery = Gallery.new(gallery_params)
     if @gallery.save
-      redirect_to gallery_path(gallery)
+      redirect_to gallery_path(@gallery)
     else
       render :new
     end
