@@ -11,11 +11,22 @@
       {
         width: 300px;
       }
+      body
+      {
+        max-width: 960 px;
+        margin: 0 auto;
+      }
+      .session
+      {
+        float: right;
+      }
   </style>
 
 </head>
 <body>
-
+  <header class="session">
+    <%= link_to "Sign up", new_user_path %>
+  </header>
 <%= yield %>
 
 </body>
