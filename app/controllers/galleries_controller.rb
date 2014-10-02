@@ -1,15 +1,15 @@
 class GalleriesController < ApplicationController
   def index
-    @galleries = Gallery.all
+    @galleries = current_user.galleries
   end
 
   def new
-    @gallery = Gallery.new
+    @gallery = current_user.galleries.new
   end
 
   def create
     #protected from mass assignment until attributes are whitelisted
-    @gallery = Gallery.new(gallery_params)
+    @gallery = current_user.galleries.create(gallery_params)
     if @gallery.save
       redirect_to gallery_path(@gallery)
     else
@@ -18,15 +18,15 @@ class GalleriesController < ApplicationController
   end
 
   def show
-    @gallery = Gallery.find(params[:id])
+    @gallery = gallery_find
   end
 
   def edit
-    @gallery = Gallery.find(params[:id])
+    @gallery = gallery_find
   end
 
   def update
-    @gallery = Gallery.find(params[:id])
+    @gallery = gallery_find
     if @gallery.update(gallery_params)
       redirect_to gallery_path(@gallery)
     else
@@ -35,7 +35,7 @@ class GalleriesController < ApplicationController
   end
 
   def destroy
-    gallery = Gallery.find(params[:id])
+    gallery = gallery_find
     gallery.destroy
     redirect_to galleries_path
   end
@@ -43,5 +43,8 @@ class GalleriesController < ApplicationController
   private
   def gallery_params
     params.require(:gallery).permit(:name, :description)
+  end
+  def gallery_find
+    current_user.galleries.find(params[:id])
   end
 end

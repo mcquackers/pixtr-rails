@@ -9,7 +9,8 @@
   <style>
     img
       {
-        width: 300px;
+        max-height: 25%;
+        max-width: 25%;
       }
       body
       {
@@ -33,6 +34,11 @@
       <%= link_to "Sign up", new_user_path %>
     <% end %>
   </header>
+  <% flash.each do |name, msg| %>
+     <% if msg.is_a?(String) %>
+      <%= content_tag :div, msg, :class => "flash_#{name}" %>
+     <% end %>
+  <% end %>
 <%= yield %>
 
 </body>
