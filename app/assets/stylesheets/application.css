@@ -13,3 +13,34 @@
  *= require_tree .
  *= require_self
  */
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+h1{
+  font-family: Oswald;
+}
+body{
+  background-color : #660066
+}
+a:link{
+  color: #CCCC00;
+}
+a:visited{
+  color: #BDAEC6;
+}
+input{
+  color: white;
+}
+input:not([type=submit]){
+  background:   #421C52;
+  border: 1px solid;
+}
+input#session_password{
+  background: #421C52;
+  border: 1px solid;
+}
+input.submit{
+  background: blue;
+}
+input[type=submit]{
+  background: #99CC00;
+  border: none;
+}
