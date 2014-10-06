@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   def create
     @image = Image.find(params[:image_id])
-    @comments = @image.comments.all
+    @comments = @image.comments.recent
     @comment = @image.comments.new(comment_params)
     @gallery = @image.gallery
     if @comment.save

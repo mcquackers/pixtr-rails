@@ -3,7 +3,7 @@ class ImagesController < ApplicationController
     @gallery = image_find
     @image = @gallery.images.find(params[:id])
     @comment = Comment.new
-    @comments = @image.comments
+    @comments = @image.comments.recent
   end
 
   def new

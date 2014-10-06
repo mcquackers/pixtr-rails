@@ -7,4 +7,8 @@ class Comment < ActiveRecord::Base
   def user_email
     user.email
   end
+
+  def self.recent
+    where("body ILIKE '%recent%'").order("created_at DESC").limit(5)
+  end
 end
