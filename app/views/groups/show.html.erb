@@ -2,4 +2,9 @@
 
 <p><%= @group.description %></p>
 
-<p>Users in the group:</p>
+<h4>Users in the group:</h4>
+<ul>
+  <% @members.each do |member| %>
+    <li><%= member.email %></li>
+  <% end %>
+</ul>

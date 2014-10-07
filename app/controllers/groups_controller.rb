@@ -1,4 +1,4 @@
-class GroupsController < ApplicationController
+ class GroupsController < ApplicationController
   def index
     @groups = Group.all
   end
@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
+      GroupMembership.create(group_id: @group.id, member_id: current_user.id)
       redirect_to groups_path
     else
       render :new
@@ -18,6 +19,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @members = @group.members
   end
 
   private

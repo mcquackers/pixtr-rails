@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :images, only: [] do
     resources :comments, only: [:create]
   end
-  resources :groups, only: [:index, :new, :create, :show]
+  resources :groups, only: [:index, :new, :create, :show] do
+    resources :group_memberships, only: [:create, :destroy]
+  end
 
  # get "/" => "galleries#index"
  # get "/galleries/new" => "galleries#new"
