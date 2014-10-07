@@ -9,6 +9,6 @@ class Comment < ActiveRecord::Base
   end
 
   def self.recent
-    where("body ILIKE '%recent%'").order("created_at DESC").limit(5)
+   order("created_at DESC").limit(5)
   end
 end

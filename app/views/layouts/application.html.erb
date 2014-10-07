@@ -5,7 +5,6 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <h1><%= link_to "Pixtr", root_path %></h1>
   <style>
     img
       {
@@ -28,12 +27,15 @@
   <header class="session">
     <% if signed_in? %>
       <p><%= current_user.email %></p>
+      <%= link_to "Galleries", galleries_path %> 
+      <%= link_to "Groups", groups_path %> |
       <%= link_to "Sign out", session_path, method: :delete %>
     <% else %>
       <%= link_to "Sign in", new_session_path %>
       <%= link_to "Sign up", new_user_path %>
     <% end %>
   </header>
+  <h1><%= link_to "Pixtr", root_path %></h1>
   <% flash.each do |name, msg| %>
      <% if msg.is_a?(String) %>
       <%= content_tag :div, msg, :class => "flash_#{name}" %>
