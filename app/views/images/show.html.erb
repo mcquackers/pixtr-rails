@@ -2,6 +2,14 @@
 <%= link_to "Edit this image", edit_gallery_image_path(@gallery, @image) %>
 <br />
 <%= image_tag @image.url %>
+<% if current_user.likes?(@image) %>
+  <%= button_to "Unlike this image", image_like_path(@image), method: :delete %>
+<% else %>
+  <%= button_to "Like this image", image_like_path(@image) %>
+<% end %>
+<% @likes.each do |like| %>
+  <%= render "likes/like", user: like.user %>
+<% end %>
 <ul>
   <% @comments.each do |comment| %>
     <%= render "comments/comment", comment: comment %>

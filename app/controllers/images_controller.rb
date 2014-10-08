@@ -4,6 +4,7 @@ class ImagesController < ApplicationController
     @image = @gallery.images.find(params[:id])
     @comment = Comment.new
     @comments = @image.comments.recent
+    @likes = @image.likes
   end
 
   def new

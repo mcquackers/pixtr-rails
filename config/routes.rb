@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
   resources :images, only: [] do
     resources :comments, only: [:create]
+    resource :like, only: [:create, :destroy]
   end
   resources :groups, only: [:index, :new, :create, :show] do
     resources :group_memberships, only: [:create, :destroy]
