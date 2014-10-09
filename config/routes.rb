@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
     resource :like, only: [:create, :destroy]
   end
-  resources :tags, only: [:index, :create]
+  resources :tags, only: [:index, :create, :show]
   resources :groups, only: [:index, :new, :create, :show] do
     resources :group_memberships, only: [:create, :destroy]
     resources :groupings, only: [:create]

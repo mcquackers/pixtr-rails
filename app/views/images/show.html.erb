@@ -4,7 +4,7 @@
 <% if @gallery.user == current_user %>
   <div>
     <%= form_for [@gallery, @image] do |form| %>
-      <%= form.collection_check_boxes(:group_ids, current_user.groups, :id, :name) %>
+      <%= form.collection_check_boxes(:group_ids, @groups, :id, :name) %>
       <%= form.submit %>
     <% end %>
   </div>
@@ -19,7 +19,16 @@
 <% @likes.each do |like| %>
   <%= render "likes/like", user: like.user %>
 <% end %>
-<p>Tags: <%= @image.tag_words %></p>
+<% if @gallery.user == current_user %>
+<p>Tags:
+  <%= form_for [@gallery, @image] do |form| %>
+    <%= form.collection_check_boxes(:tag_ids, @tags, :id, :tag_name) %>
+    <%= form.submit %>
+  <% end %>
+</p>
+<% else %>
+  <p>Tags: <%= @image.tag_words %></p>
+<% end %>
 <ul>
   <% @comments.each do |comment| %>
     <%= render "comments/comment", comment: comment %>
