@@ -1,6 +1,10 @@
 <h2>Welcome to the <%= @group.name %> group</h2>
-
 <p><%= @group.description %></p>
+<ul>
+  <% @group.images.each do |image| %>
+    <li><%= image_tag(image.url) %></li>
+  <% end %>
+</ul>
 
 <h4>Users in the group:</h4>
 <ul>

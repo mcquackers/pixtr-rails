@@ -16,6 +16,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    @users = User.all
+  end
+
+  def show
+    @user = User.find(params[:id])
+    @liked_images = @user.liked_images
+  end
+
   private
 
   def user_params

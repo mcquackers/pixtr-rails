@@ -5,6 +5,7 @@ class ImagesController < ApplicationController
     @comment = Comment.new
     @comments = @image.comments.recent
     @likes = @image.likes
+    @groups = current_user.groups
   end
 
   def new
@@ -46,7 +47,7 @@ class ImagesController < ApplicationController
 
   private
   def image_params
-    params.require(:image).permit(:name, :url)
+    params.require(:image).permit(:name, :url, group_ids: [])
   end
   def image_find
    Gallery.find(params[:gallery_id])

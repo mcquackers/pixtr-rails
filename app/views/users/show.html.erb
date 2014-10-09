@@ -1,0 +1,7 @@
+<h2>Showing <%= @user.email %>'s liked images.</h2>
+
+<ul>
+<% @liked_images.each do |image| %>
+  <%= render "liked_images", image: image %>
+<% end %>
+</ul>

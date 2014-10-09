@@ -7,6 +7,7 @@
 <% else %>
   <%= button_to "Like this image", image_like_path(@image) %>
 <% end %>
+<p>This image has <%= @likes.count %> likes.</p>
 <% @likes.each do |like| %>
   <%= render "likes/like", user: like.user %>
 <% end %>
@@ -24,5 +25,13 @@
     <%= form.text_area :body %>
 
     <%= form.submit %>
+  </div>
+<% end %>
+<% if @gallery.user == current_user %>
+  <div>
+    <%= form_for [@gallery, @image] do |form| %>
+      <%= form.collection_check_boxes(:group_ids, current_user.groups, :id, :name) %>
+      <%= form.submit %>
+    <% end %>
   </div>
 <% end %>
