@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008200431) do
+ActiveRecord::Schema.define(version: 20141009150734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(version: 20141008200431) do
     t.datetime "updated_at"
   end
 
+  create_table "image_tags", force: true do |t|
+    t.integer  "image_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "image_tags", ["image_id", "tag_id"], name: "index_image_tags_on_image_id_and_tag_id", unique: true, using: :btree
+
   create_table "images", force: true do |t|
     t.string   "name"
     t.string   "url"
@@ -74,6 +83,12 @@ ActiveRecord::Schema.define(version: 20141008200431) do
   end
 
   add_index "likes", ["image_id", "user_id"], name: "index_likes_on_image_id_and_user_id", unique: true, using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string   "tag_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email"

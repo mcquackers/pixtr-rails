@@ -1,6 +1,14 @@
 <p>Viewing the <%= @image.name %> image</p>
 <%= link_to "Edit this image", edit_gallery_image_path(@gallery, @image) %>
 <br />
+<% if @gallery.user == current_user %>
+  <div>
+    <%= form_for [@gallery, @image] do |form| %>
+      <%= form.collection_check_boxes(:group_ids, current_user.groups, :id, :name) %>
+      <%= form.submit %>
+    <% end %>
+  </div>
+<% end %>
 <%= image_tag @image.url %>
 <% if current_user.likes?(@image) %>
   <%= button_to "Unlike this image", image_like_path(@image), method: :delete %>
@@ -11,6 +19,7 @@
 <% @likes.each do |like| %>
   <%= render "likes/like", user: like.user %>
 <% end %>
+<p>Tags: <%= @image.tag_words %></p>
 <ul>
   <% @comments.each do |comment| %>
     <%= render "comments/comment", comment: comment %>
@@ -25,13 +34,5 @@
     <%= form.text_area :body %>
 
     <%= form.submit %>
-  </div>
-<% end %>
-<% if @gallery.user == current_user %>
-  <div>
-    <%= form_for [@gallery, @image] do |form| %>
-      <%= form.collection_check_boxes(:group_ids, current_user.groups, :id, :name) %>
-      <%= form.submit %>
-    <% end %>
   </div>
 <% end %>
